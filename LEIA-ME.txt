@@ -1,0 +1,34 @@
+LOJA KARA DE PAU — esboço do site
+==================================
+
+Para abrir: dê dois cliques em index.html.
+
+PÁGINAS
+  index.html     vitrine + carrinho (gaveta lateral)
+  checkout.html  formulário de dados, entrega e pagamento
+  obrigado.html  confirmação do pedido
+
+FOTOS (pasta "imagens") — salve com estes nomes exatos:
+  logo.jpg      selo/logo da Kara de Pau
+  tabua-1.jpg   tábua com divisórias e resina dourada
+  tabua-2.jpg   madeira + resina com pedras e flores
+  tabua-3.jpg   rústica escura de borda natural
+  tabua-4.jpg   tábua de churrasco clássica
+  Enquanto a foto não estiver lá, o site mostra um desenho provisório.
+
+EDITAR PRODUTOS, PREÇOS E FRETE
+  js/produtos.js  (nomes, preços, descrições, medidas, estoque, peso, WhatsApp)
+
+FRETE (estimativa)
+  js/frete.js  tabela por região e peso (Correios PAC/SEDEX, Jadlog, Loggi),
+  estado de origem e peso padrão (4 kg por tábua). Para cotação real,
+  ligar depois na API do Melhor Envio ou Frenet (instruções no arquivo).
+
+CORES
+  css/style.css, bloco ":root" no começo do arquivo.
+
+MERCADO PAGO
+  Hoje o pagamento é simulado. As instruções estão no topo de
+  js/checkout.js (bloco "INTEGRAÇÃO MERCADO PAGO"). Será preciso um
+  pequeno servidor para guardar o Access Token com segurança; depois é
+  só trocar MODO_SIMULADO para false.

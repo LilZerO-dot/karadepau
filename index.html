@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kara de Pau · Artesanato em Madeira e Resina</title>
+  <meta name="description" content="Tábuas e peças artesanais em madeira e resina, feitas à mão com madeira de resgate e reciclagem.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <a href="index.html" class="marca">
+      <img src="imagens/logo.jpg" alt="" class="marca-logo" onerror="this.remove()">
+      <span>Kara de Pau</span>
+    </a>
+    <nav class="menu">
+      <a href="#vitrine">Peças</a>
+      <a href="#sobre">Sobre nós</a>
+      <button class="botao-carrinho" id="abrirCarrinho" aria-label="Abrir carrinho">
+        🛒 <span class="contador" data-contador hidden>0</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="selo" id="selo"></p>
+    <h1>Peças feitas à mão,<br>cada uma com sua história.</h1>
+    <p>Tábuas e utilitários em madeira e resina, produzidos artesanalmente a partir de madeira de resgate.</p>
+    <a href="#vitrine" class="botao">Ver as peças</a>
+  </section>
+
+  <main id="vitrine" class="vitrine">
+    <div class="vitrine-topo">
+      <h2>Vitrine</h2>
+      <div class="filtros" id="filtros"></div>
+    </div>
+    <div class="grade" id="grade"></div>
+  </main>
+
+  <!-- SOBRE NÓS — textos provisórios, troque pela história real -->
+  <section id="sobre" class="sobre">
+    <div class="sobre-intro">
+      <svg class="selo-svg" viewBox="0 0 200 200" role="img" aria-label="Selo Kara de Pau: Madeira, Resina, Resgate, Reciclagem">
+        <defs>
+          <radialGradient id="ouro" cx="40%" cy="35%" r="75%">
+            <stop offset="0" stop-color="#f1e3a0"/><stop offset=".6" stop-color="#d9c06a"/><stop offset="1" stop-color="#b89a45"/>
+          </radialGradient>
+          <path id="arcoTopo" d="M 30 100 A 70 70 0 0 1 170 100"/>
+          <path id="arcoBase" d="M 26 100 A 74 74 0 0 0 174 100"/>
+        </defs>
+        <circle cx="100" cy="100" r="96" fill="url(#ouro)"/>
+        <circle cx="100" cy="100" r="58" fill="none" stroke="#5b3a21" stroke-width="2"/>
+        <g fill="#5b3a21" font-family="Inter, sans-serif" font-weight="600" font-size="17">
+          <text><textPath href="#arcoTopo" startOffset="50%" text-anchor="middle">Madeira - Resina</textPath></text>
+          <text><textPath href="#arcoBase" startOffset="50%" text-anchor="middle">Resgate - Reciclagem</textPath></text>
+          <g font-size="27" text-anchor="middle">
+            <text x="100" y="86">Kara</text>
+            <text x="100" y="111">de</text>
+            <text x="100" y="137">Pau</text>
+          </g>
+        </g>
+        <path d="M58 103h18M124 103h18" stroke="#5b3a21" stroke-width="2"/>
+      </svg>
+      <div>
+        <p class="selo">Sobre nós</p>
+        <h2>Madeira que ganha uma segunda vida</h2>
+        <p>A Kara de Pau nasceu na oficina de casa, das mãos de um pai marceneiro que nunca conseguiu ver um bom pedaço de madeira ir para o lixo. Tronco caído, sobra de obra, móvel antigo: tudo vira matéria-prima.</p>
+        <p>Cada tábua é cortada, lixada e finalizada à mão, uma de cada vez. Os veios, os nós e as bordas do tronco ficam à mostra, porque são eles que contam a história da peça. Quando a madeira pede, entra a resina para preencher rachaduras, guardar pedras e flores, ou criar o brilho dourado das divisórias.</p>
+        <p>O resultado são peças únicas, feitas para durar e para ir à mesa todos os dias.</p>
+      </div>
+    </div>
+
+    <div class="pilares">
+      <div class="pilar"><span>🪵</span><h3>Madeira</h3><p>Madeira maciça de verdade, escolhida pelo desenho dos veios.</p></div>
+      <div class="pilar"><span>✨</span><h3>Resina</h3><p>Resina para realçar, proteger e transformar cada peça em única.</p></div>
+      <div class="pilar"><span>🌳</span><h3>Resgate</h3><p>Troncos e sobras que seriam descartados ganham um novo uso.</p></div>
+      <div class="pilar"><span>♻️</span><h3>Reciclagem</h3><p>Menos desperdício: até os retalhos viram peças menores.</p></div>
+    </div>
+
+    <div class="cuidados">
+      <h3>Como cuidar da sua tábua</h3>
+      <ul>
+        <li>Lave à mão com água e sabão neutro e seque logo em seguida.</li>
+        <li>Não deixe de molho e não coloque na lava-louças.</li>
+        <li>De vez em quando, passe um pouco de óleo mineral para manter a madeira bonita.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="rodape">
+    <p>© <span id="ano"></span> Kara de Pau · Artesanato em madeira</p>
+    <a id="linkWhats" target="_blank" rel="noopener">Fale no WhatsApp</a>
+  </footer>
+
+  <!-- Detalhe do produto -->
+  <dialog id="detalhe" class="detalhe"></dialog>
+
+  <!-- Gaveta do carrinho -->
+  <div class="fundo" id="fundo" hidden></div>
+  <aside class="gaveta" id="gaveta" aria-label="Carrinho">
+    <div class="gaveta-topo">
+      <h2>Seu carrinho</h2>
+      <button class="fechar" id="fecharCarrinho" aria-label="Fechar">✕</button>
+    </div>
+    <div class="gaveta-itens" id="itensCarrinho"></div>
+    <div class="gaveta-rodape" id="resumoCarrinho"></div>
+  </aside>
+
+  <div class="aviso" id="aviso" role="status"></div>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/frete.js"></script>
+  <script src="js/loja.js"></script>
+</body>
+</html>

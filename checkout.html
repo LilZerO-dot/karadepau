@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finalizar compra · Kara de Pau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <a href="index.html" class="marca">
+      <img src="imagens/logo.jpg" alt="" class="marca-logo" onerror="this.remove()">
+      <span>Kara de Pau</span>
+    </a>
+    <nav class="menu"><a href="index.html">← Continuar comprando</a></nav>
+  </header>
+
+  <main class="checkout" id="checkout">
+    <form id="formCheckout" class="checkout-form" novalidate>
+      <h1>Finalizar compra</h1>
+
+      <fieldset>
+        <legend>1. Seus dados</legend>
+        <label>Nome completo <input name="nome" required autocomplete="name"></label>
+        <div class="duas">
+          <label>E-mail <input name="email" type="email" required autocomplete="email"></label>
+          <label>WhatsApp <input name="telefone" required inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000"></label>
+        </div>
+        <label>CPF <input name="cpf" required inputmode="numeric" placeholder="000.000.000-00"></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Entrega</legend>
+        <div class="duas">
+          <label>CEP <input name="cep" required inputmode="numeric" placeholder="00000-000" autocomplete="postal-code"></label>
+          <label>Número <input name="numero" required></label>
+        </div>
+        <label>Rua <input name="rua" required autocomplete="address-line1"></label>
+        <div class="duas">
+          <label>Complemento <input name="complemento"></label>
+          <label>Bairro <input name="bairro" required></label>
+        </div>
+        <div class="duas">
+          <label>Cidade <input name="cidade" required autocomplete="address-level2"></label>
+          <label>UF <input name="uf" required maxlength="2" autocomplete="address-level1"></label>
+        </div>
+        <p class="nota" id="statusCep"></p>
+        <div class="frete-checkout" id="freteCheckout"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Pagamento</legend>
+        <label class="opcao"><input type="radio" name="pagamento" value="pix" checked> Pix</label>
+        <label class="opcao"><input type="radio" name="pagamento" value="cartao"> Cartão de crédito</label>
+        <label class="opcao"><input type="radio" name="pagamento" value="boleto"> Boleto</label>
+        <p class="nota">O pagamento é feito com segurança pelo Mercado Pago.</p>
+      </fieldset>
+
+      <p class="erro" id="erroForm"></p>
+      <button class="botao largo" type="submit" id="botaoPagar">Ir para o pagamento</button>
+    </form>
+
+    <aside class="checkout-resumo">
+      <h2>Resumo do pedido</h2>
+      <div id="resumoItens"></div>
+      <div id="resumoTotais"></div>
+    </aside>
+  </main>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/frete.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

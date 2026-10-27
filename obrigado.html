@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedido recebido · Kara de Pau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <a href="index.html" class="marca">
+      <img src="imagens/logo.jpg" alt="" class="marca-logo" onerror="this.remove()">
+      <span>Kara de Pau</span>
+    </a>
+  </header>
+  <main class="vazio-pagina" id="conteudo"></main>
+
+  <script src="js/produtos.js"></script>
+  <script src="js/carrinho.js"></script>
+  <script src="js/frete.js"></script>
+  <script>
+    // O Mercado Pago devolve ?status=approved|pending|rejected nas back_urls
+    const params = new URLSearchParams(location.search);
+    const status = params.get("status") || params.get("collection_status") || "approved";
+    let pedido = null;
+    try { pedido = JSON.parse(localStorage.getItem("karadepau_ultimo_pedido")); } catch {}
+    const numero = (params.get("pedido") || params.get("external_reference") || pedido?.numero || "").replace(/[^\w-]/g, "");
+    const el = document.getElementById("conteudo");
+
+    if (status === "approved" || status === "pending") {
+      Carrinho.limpar();
+      el.innerHTML = `
+        <div class="selo-ok">✓</div>
+        <h1>${status === "approved" ? "Pedido confirmado!" : "Pedido recebido, aguardando pagamento"}</h1>
+        ${numero ? `<p>Número do pedido: <strong>${numero}</strong></p>` : ""}
+        ${pedido ? `<p>Total: <strong>${moeda(pedido.total)}</strong></p>
+          <p>Enviaremos as atualizações para <strong>${pedido.cliente.email}</strong>.</p>` : ""}
+        ${LOJA.modoTeste ? `<p class="nota-teste">Este foi um pedido de teste: nada foi cobrado e o pedido não será enviado.</p>` : `<p>Obrigado por levar uma peça feita à mão. 🪵</p>`}
+        <a href="index.html" class="botao">Voltar à loja</a>`;
+    } else {
+      el.innerHTML = `
+        <h1>O pagamento não foi concluído</h1>
+        <p>Seu carrinho continua salvo. Você pode tentar de novo.</p>
+        <a href="checkout.html" class="botao">Tentar novamente</a>`;
+    }
+  </script>
+</body>
+</html>
