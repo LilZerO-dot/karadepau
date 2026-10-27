@@ -81,5 +81,33 @@ function mostrarAvisoTeste() {
   document.body.prepend(faixa);
 }
 
+// Botão "A+" para aumentar as letras (a escolha fica salva no navegador)
+const CHAVE_LETRA = "karadepau_letra_grande";
+function aplicarLetraGrande(ligado) {
+  document.documentElement.classList.toggle("letra-grande", ligado);
+  const botao = document.querySelector(".botao-letra");
+  if (botao) {
+    botao.textContent = ligado ? "A−" : "A+";
+    botao.setAttribute("aria-label", ligado ? "Diminuir as letras" : "Aumentar as letras");
+    botao.setAttribute("aria-pressed", ligado);
+  }
+}
+function criarBotaoLetra() {
+  const menu = document.querySelector(".menu") || document.querySelector(".topo");
+  if (!menu) return;
+  const botao = document.createElement("button");
+  botao.className = "botao-letra";
+  botao.type = "button";
+  botao.addEventListener("click", () => {
+    const ligado = !document.documentElement.classList.contains("letra-grande");
+    try { localStorage.setItem(CHAVE_LETRA, ligado ? "1" : ""); } catch {}
+    aplicarLetraGrande(ligado);
+  });
+  if (menu.classList.contains("menu")) menu.prepend(botao); else menu.append(botao);
+  let salvo = false;
+  try { salvo = localStorage.getItem(CHAVE_LETRA) === "1"; } catch {}
+  aplicarLetraGrande(salvo);
+}
+
 document.addEventListener("carrinho:mudou", atualizarContador);
-document.addEventListener("DOMContentLoaded", () => { atualizarContador(); mostrarAvisoTeste(); });
+document.addEventListener("DOMContentLoaded", () => { atualizarContador(); mostrarAvisoTeste(); criarBotaoLetra(); });

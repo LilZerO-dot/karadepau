@@ -54,7 +54,7 @@ a { color: inherit; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--borda);
 }
-.marca { display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 700 1.35rem "Fraunces", serif; color: var(--madeira); }
+.marca { white-space: nowrap; display: flex; align-items: center; gap: .6rem; text-decoration: none; font: 700 1.35rem "Fraunces", serif; color: var(--madeira); }
 .marca-logo { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; }
 .menu { display: flex; align-items: center; gap: 1.2rem; }
 .menu a { text-decoration: none; font-weight: 500; color: var(--texto-suave); }
@@ -182,6 +182,21 @@ a { color: inherit; }
 .linha { display: flex; justify-content: space-between; margin: .35rem 0; color: var(--texto-suave); }
 .linha.total { color: var(--texto); font: 700 1.2rem "Fraunces", serif; margin: .7rem 0 1rem; }
 
+/* Letras maiores (botão A+) */
+html.letra-grande { font-size: 125%; }
+.botao-letra {
+  background: var(--papel); border: 1px solid var(--borda); border-radius: 999px;
+  min-width: 44px; height: 40px; padding: 0 .7em; cursor: pointer;
+  font: 700 1rem "Inter", sans-serif; color: var(--madeira);
+}
+.botao-letra[aria-pressed="true"] { background: var(--madeira); color: #fff; border-color: var(--madeira); }
+
+/* Celular deitado: o topo não fica preso, para sobrar espaço na tela */
+@media (max-height: 500px) {
+  .topo { position: static; }
+  .checkout-resumo { position: static; }
+}
+
 /* Aviso de loja em teste */
 .faixa-teste {
   background: var(--resina); color: #fff; text-align: center;
@@ -256,6 +271,8 @@ input.invalido { border-color: var(--erro); background: #fdf1ef; }
 
 /* Celular */
 @media (max-width: 760px) {
+  body { font-size: 1.06rem; }
+  .menu { gap: .6rem; }
   .menu a[href^="#"] { display: none; }
   .detalhe[open] { grid-template-columns: 1fr; }
   .detalhe img { min-height: 0; aspect-ratio: 4/3; }
